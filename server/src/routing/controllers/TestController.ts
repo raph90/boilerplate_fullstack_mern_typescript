@@ -21,7 +21,6 @@ class TestController {
     <button type="submit">Submit</button>
     </form>
     </div>
-    
     `);
   }
 

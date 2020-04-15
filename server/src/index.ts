@@ -1,12 +1,13 @@
-import { AppRouter } from "./router/AppRouter";
+import passport from "passport";
+import { AppRouter } from "./routing/AppRouter";
 import express, { Request, Response } from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
 import bodyParser from "body-parser";
-import "./controllers/TestController";
-import "./controllers/auth/AuthController";
-import { initializePassportStrategies } from "./controllers/auth";
+import "./routing/controllers/auth/googleStrategy";
+import "./routing/controllers/TestController";
+import "./routing/controllers/auth";
 
 /**
  * Webpack HMR Activation
@@ -36,13 +37,11 @@ if (module.hot) {
 
 dotenv.config();
 
-initializePassportStrategies();
+const PORT = process.env.PORT || 5000;
 
-if (!process.env.PORT) {
-  process.exit(1);
-}
-
-const PORT: number = parseInt(process.env.PORT as string, 10);
+// if (!process.env.PORT) {
+//   process.exit(1);
+// }
 
 const app = express();
 

@@ -1,11 +1,12 @@
 import passport from "passport";
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 import { Profile, VerifyCallback } from "passport-google-oauth20";
+import keys from "../../../config/keys";
 
-export const googleStrategy = new GoogleStrategy(
+const googleStrategy = new GoogleStrategy(
   {
-    clientID: process.env.googleClientId,
-    clientSecret: process.env.googleClientSecret,
+    clientID: keys.googleClientId,
+    clientSecret: keys.googleClientSecret,
     callbackURL: "/auth/google/callback",
   },
   (
@@ -19,3 +20,5 @@ export const googleStrategy = new GoogleStrategy(
     console.log("profile", profile);
   }
 );
+
+passport.use(googleStrategy);

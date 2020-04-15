@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response, RequestHandler } from "express";
-import { AppRouter } from "../../router/AppRouter";
+import { AppRouter } from "../../AppRouter";
 import { MetadataKeys } from "./MetadataKeys";
 import { Methods } from "./Methods";
 import "reflect-metadata";
