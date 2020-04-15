@@ -3,7 +3,6 @@ import { MetadataKeys } from "./MetadataKeys";
 import { Methods } from "./Methods";
 
 import "reflect-metadata";
-import { initializePassportStrategies } from "../auth";
 
 interface RouteHandlerDescriptor extends PropertyDescriptor {
   value?: RequestHandler;
@@ -33,7 +32,6 @@ function routeBinder(method: string) {
         So in defining the metadata, we are creating a metadata key called "get", with a value of what the path is, on the [methodName] of the prototype.
       */
 
-      initializePassportStrategies();
       Reflect.defineMetadata(MetadataKeys.path, path, target, key);
       Reflect.defineMetadata(MetadataKeys.method, method, target, key);
     };

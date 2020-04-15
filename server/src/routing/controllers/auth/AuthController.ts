@@ -1,9 +1,9 @@
 import passport from "passport";
+import { googleStrategy } from "./strategies/googleStrategy";
 import { Request, Response } from "express";
 import { get, controller, post, bodyValidator, use } from "../decorators";
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
-import { Profile, VerifyCallback } from "passport-google-oauth20";
 
+passport.use(googleStrategy);
 @controller<typeof AuthController>("/auth")
 export class AuthController {
   @get("/google")
@@ -15,14 +15,19 @@ export class AuthController {
   getAuth(req: Request, res: Response) {}
 
   @get("/google/callback")
-  @use(passport.authenticate("google"))
+  // @use(passport.authenticate("google"))
   googleCallback(req: Request, res: Response) {
     console.log("successful");
-    res.redirect("/");
+    res.redirect("/auth/success");
   }
 
   @get("/")
   basicAuth(req: Request, res: Response) {
     res.send("hi");
+  }
+
+  @get("/success")
+  success(req: Request, res: Response) {
+    res.send("you are successful");
   }
 }

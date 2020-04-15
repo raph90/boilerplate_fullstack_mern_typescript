@@ -1,3 +1,4 @@
+import { Connection } from "./models/Connection";
 import passport from "passport";
 import { AppRouter } from "./routing/AppRouter";
 import express, { Request, Response } from "express";
@@ -5,9 +6,7 @@ import * as dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
 import bodyParser from "body-parser";
-import "./routing/controllers/auth/googleStrategy";
-import "./routing/controllers/TestController";
-import "./routing/controllers/auth";
+import "./routing/controllers";
 
 /**
  * Webpack HMR Activation
@@ -44,6 +43,8 @@ const PORT = process.env.PORT || 5000;
 // }
 
 const app = express();
+
+Connection.connect();
 
 app.use(helmet());
 app.use(cors());
