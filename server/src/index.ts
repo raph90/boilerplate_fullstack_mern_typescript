@@ -6,7 +6,8 @@ import cors from "cors";
 import helmet from "helmet";
 import cookieSession from "cookie-session";
 import bodyParser from "body-parser";
-import keys from "./config/keys";
+const keys = require("./config/keys");
+
 /**
  * Webpack HMR Activation
  */

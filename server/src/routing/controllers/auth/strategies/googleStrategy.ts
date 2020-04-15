@@ -8,7 +8,7 @@ import {
   VerifyCallback,
   Strategy as GoogleStrategy,
 } from "passport-google-oauth20";
-import keys from "../../../../config/keys";
+const keys = require("../../../../config/keys");
 
 passport.serializeUser((user: IUser, done) => {
   done(null, user.id);

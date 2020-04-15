@@ -1,5 +1,5 @@
 import { UserModel, User } from "./User";
-import keys from "../config/keys";
+const keys = require("../config/keys");
 const mongoose = require("mongoose");
 import { connect, connection, Connection } from "mongoose";
 mongoose.Promise = global.Promise;
