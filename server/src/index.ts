@@ -1,46 +1,13 @@
 import passport from "passport";
 import { AppRouter } from "./routing/AppRouter";
 import express, { Request, Response } from "express";
-import * as dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
 import cookieSession from "cookie-session";
 import bodyParser from "body-parser";
 const keys = require("./config/keys");
 
-/**
- * Webpack HMR Activation
- */
-
-type ModuleId = string | number;
-
-interface WebpackHotModule {
-  hot?: {
-    data: any;
-    accept(
-      dependencies: string[],
-      callback?: (updatedDependencies: ModuleId[]) => void
-    ): void;
-    accept(dependency: string, callback?: () => void): void;
-    accept(errHandler?: (err: Error) => void): void;
-    dispose(callback: (data: any) => void): void;
-  };
-}
-
-declare const module: WebpackHotModule;
-
-if (module.hot) {
-  module.hot.accept();
-  module.hot.dispose(() => server.close());
-}
-
-dotenv.config();
-
-const PORT = process.env.PORT || 5000;
-
-// if (!process.env.PORT) {
-//   process.exit(1);
-// }
+const PORT = process.env.PORT || 9000;
 
 const app = express();
 

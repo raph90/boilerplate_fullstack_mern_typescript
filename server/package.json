@@ -4,9 +4,10 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "start": "node dist/index",
-    "webpack": "webpack --config webpack.config.ts",
-    "test": "jest --watch"
+    "build": "webpack --config webpack.config.ts",
+    "dev": "concurrently npm:start:*",
+    "test": "jest --watch",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",

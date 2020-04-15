@@ -3,14 +3,8 @@ const path = require("path");
 const nodeExternals = require("webpack-node-externals");
 
 module.exports = {
-  entry: ["webpack/hot/poll?100", "./src/index.ts"],
-  watch: true,
+  entry: ["./src/index.ts"],
   target: "node",
-  externals: [
-    nodeExternals({
-      whitelist: ["webpack/hot/poll?100"],
-    }),
-  ],
   module: {
     rules: [
       {
@@ -24,7 +18,6 @@ module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
   output: {
     path: path.join(__dirname, "dist"),
     filename: "index.js",
