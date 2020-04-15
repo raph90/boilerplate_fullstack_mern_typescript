@@ -1,13 +1,12 @@
-import { Connection } from "./models/Connection";
 import passport from "passport";
 import { AppRouter } from "./routing/AppRouter";
 import express, { Request, Response } from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
+import cookieSession from "cookie-session";
 import bodyParser from "body-parser";
-import "./routing/controllers";
-
+import keys from "./config/keys";
 /**
  * Webpack HMR Activation
  */
@@ -44,12 +43,20 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-Connection.connect();
-
 app.use(helmet());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+    keys: [keys.COOKIE_KEY],
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(AppRouter.getInstance());
+
+import "./routing/controllers";
 
 const server = app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);

@@ -56,7 +56,6 @@ export function controller<T extends Function>(routePrefix: string) {
       const middlewares =
         Reflect.getMetadata(MetadataKeys.middleware, target.prototype, key) ||
         [];
-
       const requiredBodyProps =
         Reflect.getMetadata(MetadataKeys.validator, target.prototype, key) ||
         [];
